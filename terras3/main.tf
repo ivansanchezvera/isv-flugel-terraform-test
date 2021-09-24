@@ -10,7 +10,8 @@ terraform {
 provider "aws" {
   # Configuration options
   # region = "${var.region}" #Commented in favor of environment variables to use as github secrets in repo
-  region = "us-east-1"
+    region = "us-west-2"
+  # region = "${var.region}"
 }
 
 # TEST #1

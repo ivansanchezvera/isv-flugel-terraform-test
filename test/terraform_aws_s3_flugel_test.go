@@ -1,14 +1,12 @@
 package test
 
 import (
-
 	"testing"
 
 	"github.com/gruntwork-io/terratest/modules/aws"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/stretchr/testify/assert"
-
 )
 
 // An example of how to test the Terraform module in examples/terraform-aws-s3-example using Terratest.
@@ -47,12 +45,10 @@ func TestTerraformAwsS3ExampleFlugel(t *testing.T) {
 	contentsFile2 := terraform.Output(t, terraformOptions, "file2_contents")
 
 	// Mi codigo: Assertions to validate bucket existance and file contents.
-	aws.AssertS3BucketExists(t, "us-east-1", "testbucket-flugel-isv")
-	contentFile1 := aws.GetS3ObjectContents(t, "us-east-1", "testbucket-flugel-isv", "test1.txt")
+	aws.AssertS3BucketExists(t, "us-west-2", "testbucket-flugel-isv")
+	contentFile1 := aws.GetS3ObjectContents(t, "us-west-2", "testbucket-flugel-isv", "test1.txt")
 	assert.Equal(t, contentsFile1, contentFile1)
 
-	contentFile2 := aws.GetS3ObjectContents(t, "us-east-1", "testbucket-flugel-isv", "test2.txt")
+	contentFile2 := aws.GetS3ObjectContents(t, "us-west-2", "testbucket-flugel-isv", "test2.txt")
 	assert.Equal(t, contentsFile2, contentFile2)
 }
-
-

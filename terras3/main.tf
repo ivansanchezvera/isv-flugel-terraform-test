@@ -10,8 +10,11 @@ terraform {
 provider "aws" {
   # Configuration options
   # region = "${var.region}" #Commented in favor of environment variables to use as github secrets in repo
-    region = "us-west-2"
-  # region = "${var.region}"
+  
+  # Hardcoded value
+  # region = "us-west-2"
+  
+  region = "${var.region}"
 }
 
 # TEST #1
@@ -25,10 +28,13 @@ provider "aws" {
 
 module "s3" {
   source = "./s3"
-  bucket_name = "testbucket-flugel-isv"
+  
+  # In case you want to override the bucket name given by default in the module, it could be done from here
+  bucket_name = var.bucket_name
+  acl_value = var.acl_value
 }
 
-
+# Create s3 bucket objects within a bucket
 resource "aws_s3_bucket_object" "object" {
   
   bucket = module.s3.bucket_final_name
@@ -39,22 +45,4 @@ resource "aws_s3_bucket_object" "object" {
 
   for_each = toset( ["1", "2"] )
   key    = "test${each.key}.txt"
-
- 
-
-  # # The filemd5() function is available in Terraform 0.11.12 and later
-  # # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
-  # # etag = "${md5(file("path/to/file"))}"
-  # etag = filemd5("path/to/file")
-
-}
-
-output "file1_contents" {
-  # for_each = toset( ["1", "2"] )
-  value    = aws_s3_bucket_object.object["1"].content
-}
-
-output "file2_contents" {
-  # for_each = toset( ["1", "2"] )
-  value    = aws_s3_bucket_object.object["2"].content
 }

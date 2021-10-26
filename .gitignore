@@ -1,5 +1,5 @@
 #Ignore future changes to credentials files
-variable.tf
+# variable.tf
 
 #Ignore terraform related files
 #Local .terraform directories

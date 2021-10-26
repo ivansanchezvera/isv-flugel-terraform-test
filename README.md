@@ -55,13 +55,24 @@ Note that this example may create resources which cost money. Run `terraform des
 |------|---------|
 | aws | >= 3.0 |
 
+## Inputs
+
+| Name              | Description | Default |
+|-------------------|-------------|---------|
+| bucket\_name      | Name of the aws s3 bucket in which the files will be stored as objects | "testbucket-flugel-isv"
+| region            | Aws Region. | "us-west-2" 
+| acl_value         | ACL value.  | "private"
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| _file1\_contents | Contents of file 1. |
-| _file1\_contents | Contents of file 2. |
+| Name              | Description |
+|-------------------|-------------|
+| bucket\_name      | Name of the aws s3 bucket in which the files will be stored as objects |
+| file1\_contents   | Contents of file 1. |
+| file2\_contents   | Contents of file 2. |
+| file1\_name       | Name of file 1. |
+| file2\_name       | Name of file 2. |
+
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Authors

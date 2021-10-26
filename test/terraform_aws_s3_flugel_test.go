@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// An example of how to test the Terraform module in examples/terraform-aws-s3-example using Terratest.
+// An example of how to test the Terraform module in for flugel using Terratest.
 func TestTerraformAwsS3ExampleFlugel(t *testing.T) {
 	t.Parallel()
 
